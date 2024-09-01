@@ -1,8 +1,42 @@
-// Markdown to HTML conversion
+// Function to calculate reading time
+function calculateReadingTime(text) {
+    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    return Math.ceil(wordCount / 200); // Assuming 200 words per minute reading speed
+}
+
+// Function to update editor stats
+function updateEditorStats(text) {
+    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    const charCount = text.length;
+    const readingTime = calculateReadingTime(text);
+
+    document.getElementById('word-count').textContent = wordCount;
+    document.getElementById('char-count').textContent = charCount;
+    document.getElementById('reading-time').textContent = readingTime;
+}
+
+// Function to update preview stats
+function updatePreviewStats(htmlContent) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+    const wordCount = textContent.split(/\s+/).filter(Boolean).length;
+    const charCount = textContent.length;
+    const readingTime = calculateReadingTime(textContent);
+
+    document.getElementById('preview-word-count').textContent = wordCount;
+    document.getElementById('preview-char-count').textContent = charCount;
+    document.getElementById('preview-reading-time').textContent = readingTime;
+}
+
+// Event listener for markdown input
 document.getElementById('markdown-input').addEventListener('input', function() {
     const markdownText = this.value;
     const htmlContent = marked.parse(markdownText);
     document.getElementById('markdown-preview').innerHTML = htmlContent;
+
+    updateEditorStats(markdownText);
+    updatePreviewStats(htmlContent);
 });
 
 // Dark Mode Toggle
@@ -41,14 +75,11 @@ document.getElementById('apply-css').addEventListener('click', function() {
 
 // Helper function to download files
 function downloadFile(filename, content) {
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
 }

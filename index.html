@@ -24,17 +24,40 @@
 </header>
 
 <div class="container mt-5 pt-5">
+    <!-- New Section Below Header -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="document-info">
+                <label for="document-name">Document Name</label>
+                <input type="text" id="document-name" class="form-control" value="Untitled Document.md">
+            </div>
+        </div>
+        <div class="col-md-6 text-right">
+            <div class="document-stats">
+                <p><strong>Reading Time:</strong> <span id="reading-time">0</span> mins</p>
+                <p><strong>Words:</strong> <span id="word-count">0</span></p>
+                <p><strong>Characters:</strong> <span id="char-count">0</span></p>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <div class="editor-container">
                 <h4>Markdown Input</h4>
                 <textarea id="markdown-input" class="form-control" rows="20" placeholder="Enter your markdown here..."></textarea>
+                <div id="editor-stats" class="mt-2">
+                    <p><strong>Words:</strong> <span id="word-count">0</span> | <strong>Characters:</strong> <span id="char-count">0</span> | <strong>Reading Time:</strong> <span id="reading-time">0</span> mins</p>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="preview-container">
                 <h4>Preview</h4>
                 <div id="markdown-preview" class="preview-area"></div>
+                <div id="preview-stats" class="mt-2">
+                    <p><strong>Words:</strong> <span id="preview-word-count">0</span> | <strong>Characters:</strong> <span id="preview-char-count">0</span> | <strong>Reading Time:</strong> <span id="preview-reading-time">0</span> mins</p>
+                </div>
             </div>
         </div>
     </div>
