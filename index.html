@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="fixed-top bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="mb-0">Markdown Editor</h1>
+        <div>
+            <button id="dark-mode-toggle" class="btn btn-outline-light">
+                <i id="mode-icon" class="fas fa-sun"></i>
+            </button>
+            <button id="download-markdown" class="btn btn-outline-light ml-2">Download Markdown</button>
+            <button id="download-html" class="btn btn-outline-light ml-2">Download HTML</button>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="editor-container">
+                <h4>Markdown Input</h4>
+                <textarea id="markdown-input" class="form-control" rows="20" placeholder="Enter your markdown here..."></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="preview-container">
+                <h4>Preview</h4>
+                <div id="markdown-preview" class="preview-area"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4>Custom Styles for Preview</h4>
+            <textarea id="custom-css" class="form-control" rows="5" placeholder="Enter custom CSS for the preview area..."></textarea>
+            <button id="apply-css" class="btn btn-success mt-2">Apply CSS</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
